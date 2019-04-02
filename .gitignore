@@ -1,0 +1,24 @@
+### SBT
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+
+### Scala
+*.class
+*.log
+
+### IntelliJ
+.idea
+*.iml
+out
+gen
+
+### Node
+package-lock.json
+node_modules/
