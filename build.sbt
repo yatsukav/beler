@@ -5,7 +5,7 @@ ThisBuild / version := "1.0.0-SNAPSHOT"
 lazy val root = (project in file("."))
   .enablePlugins(ScalaJSPlugin, WorkbenchPlugin)
   .settings(
-    name := "Portfolio",
+    name := "portfolio",
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.6",
     libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.6.7",
   )
