@@ -1,11 +1,12 @@
-ThisBuild / organization := "net.iatsuk"
-ThisBuild / scalaVersion := "2.12.8"
-ThisBuild / version := "1.0.0-SNAPSHOT"
+organization := "net.iatsuk"
+scalaVersion := "2.12.8"
+version := "1.0.0-SNAPSHOT"
+name := "portfolio"
 
-lazy val root = (project in file("."))
-  .enablePlugins(ScalaJSPlugin, WorkbenchPlugin)
-  .settings(
-    name := "portfolio",
-    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.6",
-    libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.6.7",
-  )
+enablePlugins(ScalaJSPlugin)
+enablePlugins(WorkbenchPlugin)
+
+libraryDependencies ++= Seq(
+  "org.scala-js" %%% "scalajs-dom" % "0.9.6",
+  "com.lihaoyi" %%% "scalatags" % "0.6.7"
+)
