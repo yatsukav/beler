@@ -15,37 +15,67 @@ TODO: add life examples
 +---projects.json
 \---projects
     +---prj1
-        +---data.json
-        +---content.html
-        +---image1.png
-        +---...
-        +---imageN.png
+    |   +---data.json
+    |   +---content.html
+    |   +---image1.png
+    |   +---...
+    |   \---imageN.png
     \---prjN
-        +---(same as prj1)
+        \---(same as prj1)
 ```
 Where:
-* _index.html_ — main page.
-* _beler.js_ — adds portfolio to main page.
-* _projects.json_ — contains list of projects (name, tags, directory) and appearance settings .
-* _projects_ — directory with projects' directories from _projects.json_.
-* _prj1 ... prjN_ — projects' directories from _projects.json_.
-* _data.json_ - appearance settings of project gallery.
-* _content.html_ - project content. Attention! This file should starts with `<div>` and ends with `</div>`.
-* _image1.png ... imageN.png_ — images project gallery from _data.json_.
+* _index.html_ – main page
+* _beler.js_ – adds portfolio to main page
+* _projects.json_ – contains list of projects (name, tags, directory) and appearance settings
+* _projects_ – directory with projects' directories from _projects.json_
+* _prj1 ... prjN_ – projects' directories from _projects.json_
+* _data.json_ – appearance settings of project gallery
+* _content.html_ – project content
+* _image1.png ... imageN.png_ – images project gallery from _data.json_
 
 ### projects.json
-TODO: add structure and description
-```
+```json
 {
+  "path": "projects",
+  "showTags": true,
+  "projects": [
+    {
+      "dir": "prj1",
+      "name": "BELeR CV",
+      "description": "Resume template written in Scala.JS",
+      "tags": ["scala", "web", "figma"],
+      "thumbnail": "logo.jpg"
+    },
+    ...
+    {
+      "dir": "prjN",
+      ...
+    }
+  ]
 }
 ```
+Where:
+* _path_ – path to directory with projects
+* _showTags_ – show tags filter list before portfolio
+* _projects_ – list with projects data
+* _dir_ – project directory in _path_
+* _name_ – project name
+* _description_ – project short description
+* _tags_ - project tags
+* _thumbnail_ - image in project _dir_
 
 ### data.json
-TODO: add structure and description
-```
+```json
 {
+  "content": "content.html",
+  "images": ["img1.png", "img2.jpg", "img3.jpeg"],
+  "thumbnails": ["img1.min.jpg", "img2.min.jpg", "img3.min.jpg"]
 }
 ```
+Where:
+* _content_ – file name with html content
+* _images_ – show tags filter list before portfolio
+* _thumbnails_ – small size of _image_ to speed up page loading
 
 ### How get nice resume/cv
 1. Fill your resume in _index.html_
