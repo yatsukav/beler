@@ -1,7 +1,7 @@
 organization := "net.iatsuk"
 scalaVersion := "2.12.8"
 version := "1.0.0-SNAPSHOT"
-name := "portfolio"
+name := "beler"
 
 enablePlugins(ScalaJSPlugin)
 enablePlugins(WorkbenchPlugin)
