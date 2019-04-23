@@ -23,11 +23,11 @@ import scalatags.JsDom.all._
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 
-@JSExportTopLevel("ScalaJSExample")
-object ScalaJSExample {
+@JSExportTopLevel("BELeR")
+object BELeR {
 
   @JSExport
-  def main(target: html.Div): Unit = {
+  def addPortfolio(target: html.Div, settingsJsonFile: String): Unit = {
     val xhr = new dom.XMLHttpRequest()
     xhr.open("GET", "article.html")
     xhr.onload = (e: dom.Event) => {
