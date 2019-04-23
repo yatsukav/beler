@@ -8,5 +8,6 @@ enablePlugins(WorkbenchPlugin)
 
 libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.9.6",
-  "com.lihaoyi" %%% "scalatags" % "0.6.7"
+  "com.lihaoyi" %%% "scalatags" % "0.6.7",
+  "com.lihaoyi" %% "upickle" % "0.7.4",
 )
