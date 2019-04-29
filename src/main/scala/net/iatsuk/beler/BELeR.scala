@@ -28,23 +28,30 @@ object BELeR {
 
   @JSExport
   def addPortfolio(target: html.Div, settingsJsonFile: String): Unit = {
-    val xhr = new dom.XMLHttpRequest()
-    xhr.open("GET", "article.html")
-    xhr.onload = (e: dom.Event) => {
-      if (xhr.status == 200) {
-        val article = div().render
-        article.innerHTML = xhr.responseText
-        target.appendChild(
-          article
-        )
-      }
-    }
-    xhr.send()
     target.appendChild(
       div(
         h1("Hello World")
       ).render
     )
   }
+
+  def getProjectMeta(settingsJsonFile: String, syncGet: String => Option[String]): Option[Settings.ProjectMeta] = {
+    syncGet(settingsJsonFile).map(Settings.ProjectMeta.fromJson)
+  }
+
+  def ajaxGet(url: String, async: Boolean = true): Option[String] = {
+    var result: Option[String] = None
+    val xhr = new dom.XMLHttpRequest()
+    xhr.open("GET", url, async = async)
+    xhr.onload = (e: dom.Event) => {
+      if (xhr.status == 200) {
+        result = Some(xhr.responseText)
+      }
+    }
+    xhr.send()
+    result
+  }
+
+  def ajaxSyncGet(url: String): Option[String] = ajaxGet(url, async = false)
 
 }
