@@ -1,0 +1,5 @@
+{
+  "content": "content.html",
+  "images": ["img1.png", "img2.jpg", "img3.jpeg"],
+  "thumbnails": ["img1.min.jpg", "img2.min.jpg", "img3.min.jpg"]
+}

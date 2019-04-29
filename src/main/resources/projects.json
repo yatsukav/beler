@@ -1,0 +1,20 @@
+{
+  "path": "projects",
+  "showTags": true,
+  "projects": [
+    {
+      "dir": "prj1",
+      "name": "BELeR CV",
+      "description": "Resume template written in Scala.JS",
+      "tags": ["scala", "web", "figma"],
+      "thumbnail": "logo.jpg"
+    },
+    {
+      "dir": "prj2",
+      "name": "Lorem Ipsum",
+      "description": "Lorem ipsum dolor sit amet consectetuer",
+      "tags": ["lorem ipsum", "web"],
+      "thumbnail": "logo.jpg"
+    }
+  ]
+}
