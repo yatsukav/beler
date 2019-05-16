@@ -6,12 +6,12 @@ object SettingsTest extends TestSuite {
 
   val tests = Tests {
 
-    "Configuration from json" - {
+    "Configuration from json without projects" - {
       val json =
         """{
-          |"path":"projects",
-          |"showTags":true,
-          |"projects":[]
+          | "path":"projects",
+          | "showTags":true,
+          | "projects":[]
           |}""".stripMargin
       val parsed = Settings.Configuration.fromJson(json)
       assert(
@@ -21,14 +21,42 @@ object SettingsTest extends TestSuite {
       )
     }
 
+    "Configuration from json with projects" - {
+      val json =
+        """{
+          | "path":"projects",
+          | "showTags":true,
+          | "projects":[
+          |   {
+          |     "dir":"prj1",
+          |     "name":"BELeR CV",
+          |     "description":"Scala.JS Portfolio gallery",
+          |     "thumbnail":"thumbnail.png",
+          |     "tags":["scala","web"]
+          |   }
+          | ]
+          |}""".stripMargin
+      val parsed = Settings.Configuration.fromJson(json)
+      assert(
+        parsed.path == "projects",
+        parsed.showTags,
+        parsed.projects.length == 1,
+        parsed.projects.head.dir == "prj1",
+        parsed.projects.head.name == "BELeR CV",
+        parsed.projects.head.description == "Scala.JS Portfolio gallery",
+        parsed.projects.head.thumbnail == "thumbnail.png",
+        parsed.projects.head.tags sameElements Array("scala", "web"),
+      )
+    }
+
     "ProjectMeta from json" - {
       val json =
         """{
-          |"dir":"prj1",
-          |"name":"BELeR CV",
-          |"description":"Scala.JS Portfolio gallery",
-          |"thumbnail":"thumbnail.png",
-          |"tags":["scala","web"]
+          | "dir":"prj1",
+          | "name":"BELeR CV",
+          | "description":"Scala.JS Portfolio gallery",
+          | "thumbnail":"thumbnail.png",
+          | "tags":["scala","web"]
           |}""".stripMargin
       val parsed = Settings.ProjectMeta.fromJson(json)
       assert(
@@ -43,9 +71,9 @@ object SettingsTest extends TestSuite {
     "ProjectData from json" - {
       val json =
         """{
-          |"content":"file.html",
-          |"images":["1.jpg","2.jpg"],
-          |"thumbnails":["1.m.jpg","2.m.jpg"]
+          | "content":"file.html",
+          | "images":["1.jpg","2.jpg"],
+          | "thumbnails":["1.m.jpg","2.m.jpg"]
           |}""".stripMargin
       val parsed = Settings.ProjectData.fromJson(json)
       assert(
