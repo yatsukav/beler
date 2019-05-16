@@ -17,6 +17,7 @@
   */
 package net.iatsuk.beler
 
+import net.iatsuk.beler.config.GalleryConfiguration
 import org.scalajs.dom
 import org.scalajs.dom.html
 import scalatags.JsDom.all._
@@ -35,8 +36,8 @@ object BELeR {
     )
   }
 
-  def getProjectMeta(settingsJsonFile: String, syncGet: String => Option[String]): Option[Settings.ProjectMeta] = {
-    syncGet(settingsJsonFile).map(Settings.ProjectMeta.fromJson)
+  def getProjectMeta(settingsJsonFile: String, syncGet: String => Option[String]): Option[GalleryConfiguration.ProjectMeta] = {
+    syncGet(settingsJsonFile).map(GalleryConfiguration.ProjectMeta.fromJson)
   }
 
   def ajaxGet(url: String, async: Boolean = true): Option[String] = {

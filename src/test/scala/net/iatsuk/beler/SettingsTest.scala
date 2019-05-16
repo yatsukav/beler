@@ -1,5 +1,6 @@
 package net.iatsuk.beler
 
+import net.iatsuk.beler.config._
 import utest._
 
 object SettingsTest extends TestSuite {
@@ -13,7 +14,7 @@ object SettingsTest extends TestSuite {
           | "showTags":true,
           | "projects":[]
           |}""".stripMargin
-      val parsed = Settings.Configuration.fromJson(json)
+      val parsed = GalleryConfiguration.Configuration.fromJson(json)
       assert(
         parsed.path == "projects",
         parsed.showTags,
@@ -36,7 +37,7 @@ object SettingsTest extends TestSuite {
           |   }
           | ]
           |}""".stripMargin
-      val parsed = Settings.Configuration.fromJson(json)
+      val parsed = GalleryConfiguration.Configuration.fromJson(json)
       assert(
         parsed.path == "projects",
         parsed.showTags,
@@ -58,7 +59,7 @@ object SettingsTest extends TestSuite {
           | "thumbnail":"thumbnail.png",
           | "tags":["scala","web"]
           |}""".stripMargin
-      val parsed = Settings.ProjectMeta.fromJson(json)
+      val parsed = GalleryConfiguration.ProjectMeta.fromJson(json)
       assert(
         parsed.dir == "prj1",
         parsed.name == "BELeR CV",
@@ -75,7 +76,7 @@ object SettingsTest extends TestSuite {
           | "images":["1.jpg","2.jpg"],
           | "thumbnails":["1.m.jpg","2.m.jpg"]
           |}""".stripMargin
-      val parsed = Settings.ProjectData.fromJson(json)
+      val parsed = ProjectConfiguration.ProjectData.fromJson(json)
       assert(
         parsed.content == "file.html",
         parsed.images sameElements Array("1.jpg", "2.jpg"),
