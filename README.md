@@ -36,11 +36,10 @@ Where:
 ### projects.json
 ```json
 {
-  "path": "projects",
   "showTags": true,
   "projects": [
     {
-      "dir": "prj1",
+      "path": "projects/prj1",
       "name": "BELeR CV",
       "description": "Resume template written in Scala.JS",
       "tags": ["scala", "web", "figma"],
@@ -48,17 +47,16 @@ Where:
     },
     ...
     {
-      "dir": "prjN",
+      "path": "projects/prjN",
       ...
     }
   ]
 }
 ```
 Where:
-* _path_ – path to directory with projects
 * _showTags_ – show tags filter list before portfolio
 * _projects_ – list with projects data
-* _dir_ – project directory in _path_
+* _path_ – project directory path
 * _name_ – project name
 * _description_ – project short description
 * _tags_ - project tags

@@ -15,23 +15,29 @@
   * You should have received a copy of the GNU General Public License
   * along with this program.  If not, see https://www.gnu.org/licenses/.
   */
-package net.iatsuk.beler
+package net.iatsuk.beler.data
 
-import org.scalajs.dom.html
-import scalatags.JsDom.all._
+import utest._
 
-import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+object ProjectDataTest extends TestSuite {
 
-@JSExportTopLevel("BELeR")
-object BELeR {
+  override def tests: Tests = Tests {
 
-  @JSExport
-  def addPortfolio(target: html.Div, settingsJsonFile: String): Unit = {
-    target.appendChild(
-      div(
-        for (_ <- 1.to(5)) yield h1("Hello World")
-      ).render
-    )
+    "ProjectData from json" - {
+      val json =
+        """{
+          | "content":"file.html",
+          | "images":["1.jpg","2.jpg"],
+          | "thumbnails":["1.m.jpg","2.m.jpg"]
+          |}""".stripMargin
+      val parsed = ProjectData.ProjectConfiguration.fromJson(json)
+      assert(
+        parsed.content == "file.html",
+        parsed.images sameElements Array("1.jpg", "2.jpg"),
+        parsed.thumbnails sameElements Array("1.m.jpg", "2.m.jpg")
+      )
+    }
+
   }
 
 }

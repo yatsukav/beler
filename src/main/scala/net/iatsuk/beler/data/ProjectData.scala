@@ -15,23 +15,20 @@
   * You should have received a copy of the GNU General Public License
   * along with this program.  If not, see https://www.gnu.org/licenses/.
   */
-package net.iatsuk.beler
+package net.iatsuk.beler.data
 
-import org.scalajs.dom.html
-import scalatags.JsDom.all._
+import upickle.default.{ReadWriter => RW, macroRW, read}
 
-import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+/**
+  * Json settings for project page.
+  */
+object ProjectData {
 
-@JSExportTopLevel("BELeR")
-object BELeR {
+  case class ProjectConfiguration(content: String, images: Array[String], thumbnails: Array[String])
+  object ProjectConfiguration {
+    implicit val rw: RW[ProjectConfiguration] = macroRW
 
-  @JSExport
-  def addPortfolio(target: html.Div, settingsJsonFile: String): Unit = {
-    target.appendChild(
-      div(
-        for (_ <- 1.to(5)) yield h1("Hello World")
-      ).render
-    )
+    def fromJson(string: String): ProjectConfiguration = read[ProjectConfiguration](string)
   }
 
 }

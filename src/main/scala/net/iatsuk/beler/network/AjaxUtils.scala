@@ -15,23 +15,25 @@
   * You should have received a copy of the GNU General Public License
   * along with this program.  If not, see https://www.gnu.org/licenses/.
   */
-package net.iatsuk.beler
+package net.iatsuk.beler.network
 
-import org.scalajs.dom.html
-import scalatags.JsDom.all._
+import org.scalajs.dom
 
-import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+object AjaxUtils {
 
-@JSExportTopLevel("BELeR")
-object BELeR {
-
-  @JSExport
-  def addPortfolio(target: html.Div, settingsJsonFile: String): Unit = {
-    target.appendChild(
-      div(
-        for (_ <- 1.to(5)) yield h1("Hello World")
-      ).render
-    )
+  def getText(url: String, async: Boolean = true): Option[String] = {
+    var result: Option[String] = None
+    val xhr = new dom.XMLHttpRequest()
+    xhr.open("GET", url, async = async)
+    xhr.onload = (e: dom.Event) => {
+      if (xhr.status == 200) {
+        result = Some(xhr.responseText)
+      }
+    }
+    xhr.send()
+    result
   }
+
+  def syncGetText(url: String): Option[String] = getText(url, async = false)
 
 }
