@@ -17,8 +17,9 @@
   */
 package net.iatsuk.beler
 
+import net.iatsuk.beler.data.GalleryData
+import net.iatsuk.beler.network.AjaxUtils
 import org.scalajs.dom.html
-import scalatags.JsDom.all._
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 
@@ -26,12 +27,16 @@ import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 object BELeR {
 
   @JSExport
-  def addPortfolio(target: html.Div, settingsJsonFile: String): Unit = {
-    target.appendChild(
-      div(
-        for (_ <- 1.to(5)) yield h1("Hello World")
-      ).render
-    )
+  def addGallery(target: html.Div, settingsJsonFile: String): Unit = {
+    // get conf by ajax
+    val conf = AjaxUtils.syncGetText(settingsJsonFile)
+      .map(GalleryData.Configuration.fromJson)
+      .getOrElse(GalleryData.Configuration(showTags = false, projects = List.empty))
+    // initialize gallery from conf
+    val gallery = new Gallery(conf)
+    // apply to html dom
+    target.appendChild(gallery.draw())
+    // you are beauty!
   }
 
 }

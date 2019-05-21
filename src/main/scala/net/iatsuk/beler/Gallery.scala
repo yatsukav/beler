@@ -18,16 +18,10 @@
 package net.iatsuk.beler
 
 import net.iatsuk.beler.data.GalleryData
-import net.iatsuk.beler.data.GalleryData.Configuration
-import net.iatsuk.beler.network.AjaxUtils
 import org.scalajs.dom.html
 import scalatags.JsDom.all._
 
-class Gallery(private val settingsPath: String) {
-
-  val conf: Configuration = AjaxUtils.syncGetText(settingsPath)
-    .map(GalleryData.Configuration.fromJson)
-    .getOrElse(GalleryData.Configuration(showTags = false, projects = List.empty))
+class Gallery(val conf: GalleryData.Configuration) {
 
   val sortedTags: List[String] = conf.projects
     .flatMap(_.tags)
@@ -59,7 +53,7 @@ class Gallery(private val settingsPath: String) {
 
   def renderThumbnails(): html.Div = {
     div(
-      conf.projects.map(_.thumbnail).map(img(_))
+      conf.projects.map(_.thumbnail).map(url => img(src:=url))
     ).render
   }
 
